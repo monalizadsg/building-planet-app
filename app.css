@@ -8,7 +8,7 @@ body {
   width: 90%;
   max-width: 1100px;
   margin: 1.1em auto;
-  
+
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -20,6 +20,21 @@ body {
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.card:hover {
+  .delete-btn {
+    display: block;
+  }
+}
+
+.delete-btn {
+  display: none;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .card div {

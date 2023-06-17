@@ -75,11 +75,21 @@ class Planet extends React.Component {
   state = {
     planets: planets,
   };
+
+  handleRemovePlanet = (id) => {
+    let newPlanets = this.state.planets.filter((planet) => planet.id != id);
+    this.setState({ planets: newPlanets });
+  };
+
   render() {
     return (
-      <div class='container'>
+      <div className='container'>
         {this.state.planets.map((planet) => (
-          <PlanetCard key={planet.id} {...planet} />
+          <PlanetCard
+            key={planet.id}
+            {...planet}
+            removePlanet={this.handleRemovePlanet}
+          />
         ))}
       </div>
     );
@@ -88,9 +98,13 @@ class Planet extends React.Component {
 
 // 2: Create a container component that iterates over the planets array
 //    and renders a 'Planet' component for each object in the array
-const PlanetCard = ({ name, diameter, moons, desc, url }) => {
+const PlanetCard = (props) => {
+  const { id, name, diameter, moons, desc, url, removePlanet } = props;
   return (
     <div className='card'>
+      <button className='delete-btn' onClick={() => removePlanet(id)}>
+        x
+      </button>
       <div>
         <img src={url} alt={name} />
       </div>
